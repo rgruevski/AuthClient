@@ -1,0 +1,43 @@
+﻿@model IEnumerable<AuthSystem.Areas.Identity.Data.ApplicationUser>
+@{
+    ViewData["Title"] = "Members";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Members</h1>
+
+@if (Model.Any())
+{
+    foreach (var user in Model)
+    {
+        if (User.Identity.Name == "losinglosers@gmail.com")
+        {
+            <div class="card mb-3">
+                <div class="card-header">
+                    @(user.FirstName + " " + user.LastName)
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">UserID: @user.Id</h5>
+                    <h5 class="card-title">Email: @user.Email</h5>
+                    <h5 class="card-title">Phone: @(user.PhoneNumber != null || user.PhoneNumber != "" ? user.PhoneNumber : "Not Stored")</h5>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="card mb-3">
+                <div class="card-header">
+                    @(user.FirstName + " " + user.LastName)
+                </div>
+            </div>
+        }
+    }
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            No users created.
+        </div>
+    </div>
+}
